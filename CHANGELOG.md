@@ -1,3 +1,7 @@
+## [0.0.3] - 13/10/2020.
+
+* Edited description.
+
 ## [0.0.2] - 13/10/2020.
 
 * Edited readme.
