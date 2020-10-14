@@ -1,3 +1,7 @@
+## [1.0.0] - 13/10/2020.
+
+* Allow link tapping.
+
 ## [0.0.3] - 13/10/2020.
 
 * Edited description.
