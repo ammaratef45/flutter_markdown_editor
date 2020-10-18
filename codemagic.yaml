@@ -1,5 +1,5 @@
 workflows:
-  flutter-package:
+  default:
     name: Flutter or Dart Package
     environment:
       flutter: beta
