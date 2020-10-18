@@ -3,6 +3,20 @@ workflows:
     name: Flutter or Dart Package
     environment:
       flutter: beta
+    cache:
+      cache_paths:
+        - $FLUTTER_ROOT/.pub-cache
+        - $HOME/.gradle/caches
+        - $HOME/Library/Caches/CocoaPods
+    triggering:
+      events:
+        - push
+        - pull_request
+      branch_patterns:
+        - pattern: 'main'
+          include: true
+          source: true
+      cancel_previous_builds: false 
     scripts:
       - flutter packages pub get
       - flutter test
