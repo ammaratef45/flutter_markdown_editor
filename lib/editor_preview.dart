@@ -4,12 +4,16 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:markdown/markdown.dart' as md;
 import 'package:url_launcher/url_launcher.dart';
 
+/// [MarkdownPreview] will use [Markdown] from [flutter_markdown]
+/// to preview the markdown [text] passed to it.
 class MarkdownPreview extends StatelessWidget {
+  /// Create the [MarkdownPreview] passing the text.
   const MarkdownPreview({
     Key key,
     @required this.text,
   }) : super(key: key);
 
+  /// To be displayed by the [Markdown] widget.
   final String text;
 
   @override
@@ -34,7 +38,6 @@ class MarkdownPreview extends StatelessWidget {
                 );
               }
             });
-            print(href);
           },
           data: text,
           shrinkWrap: true,
