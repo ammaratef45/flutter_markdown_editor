@@ -1,13 +1,27 @@
 import 'package:flutter/material.dart';
 
-// TODO add emoji selector to the editor
+/// A row of icons(buttons) that can be used to manipulate the text.
+///
+/// It manipulates the text inside the [controller].
+///
+/// The function [afterEditing] will be called after the text is edited.
 class MarkdownEditorIcons extends StatelessWidget {
+  /// Create a [MarkdownEditorIcons] passing a [controller] and [afterEditing].
+  MarkdownEditorIcons({
+    Key key,
+    @required this.controller,
+    this.afterEditing,
+  })  : assert(controller != null),
+        super(key: key);
+
   final _scrollbarController = ScrollController();
+
+  /// This widget will manipulate the text inside this [controller].
   final TextEditingController controller;
+
+  /// Will be invoked afer editing the text.
   final Function afterEditing;
 
-  MarkdownEditorIcons({Key key, @required this.controller, this.afterEditing})
-      : super(key: key);
   @override
   Widget build(BuildContext context) {
     return SizedBox(
