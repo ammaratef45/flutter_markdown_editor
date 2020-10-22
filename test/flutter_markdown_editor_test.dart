@@ -3,6 +3,7 @@ import 'package:flutter_markdown_editor/flutter_markdown_editor.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
+  /// Test widgets are created without exception.
   testWidgets('create widget', (WidgetTester tester) async {
     MarkDownEditor editor = MarkDownEditor();
     await tester.pumpWidget(MyWidget(
