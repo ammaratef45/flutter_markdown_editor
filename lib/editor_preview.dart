@@ -22,7 +22,7 @@ class MarkdownPreview extends StatelessWidget {
       child: SingleChildScrollView(
         child: Markdown(
           controller: ScrollController(),
-          onTapLink: (href) {
+          onTapLink: (_, href, __) {
             canLaunch(href).then((value) {
               if (value) {
                 launch(href);

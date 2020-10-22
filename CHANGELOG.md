@@ -1,3 +1,9 @@
+## [1.1.0] - 22/10/2020.
+
+* Prompt for urls when inserting a url or image.
+* Upgraded to markdoen 3.0.0 and flutter_markdown 0.5.0
+* enhanced documentation.
+
 ## [1.0.0] - 13/10/2020.
 
 * Allow link tapping.
