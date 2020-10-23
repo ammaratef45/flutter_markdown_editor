@@ -3,7 +3,7 @@ A flutter package for a readme editor.
 
 [![pub](https://img.shields.io/pub/v/flutter_markdown_editor.svg)](https://pub.dev/packages/flutter_markdown_editor)
 [![build](https://api.codemagic.io/apps/5f8ba9e48927e94619c42d6f/default/status_badge.svg)](https://codemagic.io/app/5f8ba9e48927e94619c42d6f)
-[![codecov](https://codecov.io/gh/ammaratef45/flutter_markdown_editor/branch/master/graph/badge.svg)](https://codecov.io/gh/ammaratef45/flutter_markdown_editor)
+[![codecov](https://codecov.io/gh/ammaratef45/flutter_markdown_editor/branch/main/graph/badge.svg)](https://codecov.io/gh/ammaratef45/flutter_markdown_editor)
 
 # Usage
 Add dev dependency to your `pubspec.yaml`:
