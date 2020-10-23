@@ -6,15 +6,22 @@ import 'package:url_launcher/url_launcher.dart';
 
 /// [MarkdownPreview] will use [Markdown] from [flutter_markdown]
 /// to preview the markdown [text] passed to it.
+///
+/// [selectable] is used to determine if the preview will be
+/// selectable or not and default to true.
 class MarkdownPreview extends StatelessWidget {
-  /// Create the [MarkdownPreview] passing the text.
+  /// Create the [MarkdownPreview] passing the text and [selectable].
   const MarkdownPreview({
     Key key,
     @required this.text,
+    this.selectable = true,
   }) : super(key: key);
 
   /// To be displayed by the [Markdown] widget.
   final String text;
+
+  /// Whether should be selectable or not
+  final bool selectable;
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +29,7 @@ class MarkdownPreview extends StatelessWidget {
       child: SingleChildScrollView(
         child: Markdown(
           controller: ScrollController(),
+          selectable: selectable,
           onTapLink: (_, href, __) {
             canLaunch(href).then((value) {
               if (value) {

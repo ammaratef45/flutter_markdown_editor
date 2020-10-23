@@ -23,11 +23,15 @@ class MarkDownEditor {
   /// Create a [MarkDownEditor] using a passed [controller] or
   /// create one if null.
   ///
+  /// [selectable] is used to determine if the preview will be
+  /// selectable or not and default to true.
+  ///
   /// Initializes the widgets [MrkdownEditingField], [MarkdownEditorIcons] and
   /// [MarkdownPreview] passing the [controller] or its [text] and all other
   /// necessary parameters.
   MarkDownEditor({
     TextEditingController controller,
+    this.selectable = true,
   }) : _controller = controller {
     if (_controller == null) _controller = TextEditingController();
     _field = MrkdownEditingField(
@@ -45,6 +49,7 @@ class MarkDownEditor {
         _setStateFuntion = setState;
         return MarkdownPreview(
           text: _controller.text,
+          selectable: selectable,
           key: UniqueKey(),
         );
       },
@@ -56,6 +61,9 @@ class MarkDownEditor {
   Widget _icons;
   Widget _preview;
   Function _setStateFuntion;
+
+  /// Whether preview should be selectable or not
+  final bool selectable;
 
   /// [field] is the [MrkdownEditingField] widget.
   Widget get field => _field;
