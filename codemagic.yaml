@@ -3,6 +3,8 @@ workflows:
     name: Flutter or Dart Package
     environment:
       flutter: beta
+      vars:
+        CODECOV_TOKEN: Encrypted(Z0FBQUFBQmZrMURMX0wxbDJaWXNJeDVaX1gwRm5CNHJITUxJU1N6X2lCRGlfcTRBZHhTdmE4RzNobm9QMi10QlJYcm1mVnpXeG5udXB6UjFxTl9tR3ZHLW11NUhkckFfYUZ0SEtLWHRDNDk4NTNVRUF1TVRYRWVfSnlDWmFoaEVSSjVvTjBoX0xmZU8=)
     cache:
       cache_paths:
         - $FLUTTER_ROOT/.pub-cache
@@ -20,3 +22,8 @@ workflows:
     scripts:
       - flutter packages pub get
       - flutter test
+      - name: Coverage Test
+        script: |
+          #!/bin/bash
+          flutter test --coverage
+          bash <(curl -s https://codecov.io/bash) -t $CODECOV_TOKEN
