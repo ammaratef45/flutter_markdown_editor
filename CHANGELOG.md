@@ -1,3 +1,7 @@
+## [1.1.1] - 23/10/2020.
+
+* Preview text is selectable.
+
 ## [1.1.0] - 22/10/2020.
 
 * Prompt for urls when inserting a url or image.

@@ -1,6 +1,6 @@
 name: flutter_markdown_editor
 description: A package for markdown editor widget, you can use pre-exist editors or customize the view to build yours.
-version: 1.1.0
+version: 1.1.1
 homepage: https://github.com/ammaratef45/flutter_markdown_editor
 
 environment:
