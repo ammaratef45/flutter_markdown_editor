@@ -97,9 +97,9 @@ class MarkDownEditor {
         children: [
           Switch(
             value: isPreviewing,
-            onChanged: (val) {
+            onChanged: (value) {
               setstate(() {
-                isPreviewing = val;
+                isPreviewing = value;
               });
             },
           ),
