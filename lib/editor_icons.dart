@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-typedef _prompt = Future<String> Function();
+typedef PromptFunction = Future<String?> Function();
 
 /// A future function that can be used to prompt for a url or image source.
 ///
@@ -27,12 +27,11 @@ class MarkdownEditorIcons extends StatelessWidget {
   /// Create a [MarkdownEditorIcons] passing a [controller],
   /// [urlSource] and [afterEditing].
   MarkdownEditorIcons({
-    Key key,
-    @required this.controller,
+    Key? key,
+    required this.controller,
     this.afterEditing,
     this.urlSource,
-  })  : assert(controller != null),
-        super(key: key);
+  }) : super(key: key);
 
   final _scrollbarController = ScrollController();
 
@@ -40,14 +39,14 @@ class MarkdownEditorIcons extends StatelessWidget {
   final TextEditingController controller;
 
   /// Will be invoked afer editing the text.
-  final Function afterEditing;
+  final Function? afterEditing;
 
   /// A future function that can be used to prompt for a url or image source.
   ///
   /// You can use this to show your own dialog and return the prompt value.
   ///
   /// Check the function _takeInput for an example.
-  final UrlSource urlSource;
+  final UrlSource? urlSource;
 
   @override
   Widget build(BuildContext context) {
@@ -127,23 +126,23 @@ class MarkdownEditorIcons extends StatelessWidget {
     );
   }
 
-  _prompt _getPromptFunction({
-    String label,
-    String hint,
-    BuildContext context,
+  PromptFunction _getPromptFunction({
+    required String label,
+    required String hint,
+    required BuildContext context,
   }) {
     return () {
       return urlSource == null
           ? _takeInput(context: context, hint: hint, label: label)
-          : urlSource(context: context, hint: hint, label: label);
+          : urlSource!(context: context, hint: hint, label: label);
     };
   }
 
   void _surroundTextSelection(
     String left,
     String right, {
-    _prompt prompt,
-    String afterPrompt,
+    PromptFunction? prompt,
+    String? afterPrompt,
   }) async {
     final currentTextValue = controller.value.text;
     final selection = controller.selection;
@@ -153,8 +152,8 @@ class MarkdownEditorIcons extends StatelessWidget {
     String insertion = '$left$middle$right';
     if (prompt != null) {
       assert(afterPrompt != null);
-      insertion += await prompt();
-      insertion += afterPrompt;
+      insertion += await prompt() ?? '';
+      insertion += afterPrompt!;
     }
 
     final newTextValue = '$textBefore$insertion$textAfter';
@@ -165,13 +164,13 @@ class MarkdownEditorIcons extends StatelessWidget {
         offset: selection.baseOffset + left.length + middle.length,
       ),
     );
-    if (afterEditing != null) afterEditing();
+    if (afterEditing != null) afterEditing!.call();
   }
 
-  Future<String> _takeInput({
-    @required BuildContext context,
-    @required String hint,
-    @required String label,
+  Future<String?> _takeInput({
+    required BuildContext context,
+    required String hint,
+    required String label,
   }) {
     return showDialog<String>(
       context: context,
@@ -194,13 +193,11 @@ class _InputPrompt extends StatelessWidget {
   final _controller = TextEditingController();
 
   _InputPrompt({
-    Key key,
-    @required this.title,
-    @required this.label,
-    @required this.hint,
-  })  : assert(title != null),
-        assert(hint != null),
-        super(key: key);
+    Key? key,
+    required this.title,
+    required this.label,
+    required this.hint,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return SimpleDialog(
@@ -213,12 +210,11 @@ class _InputPrompt extends StatelessWidget {
             hintText: hint,
           ),
         ),
-        RaisedButton.icon(
+        ElevatedButton(
           onPressed: () {
             Navigator.pop<String>(context, _controller.text);
           },
-          icon: Icon(Icons.done),
-          label: Text('Done'),
+          child: Text('Done'),
         ),
       ],
     );

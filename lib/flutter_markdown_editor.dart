@@ -30,10 +30,9 @@ class MarkDownEditor {
   /// [MarkdownPreview] passing the [controller] or its [text] and all other
   /// necessary parameters.
   MarkDownEditor({
-    TextEditingController controller,
+    TextEditingController? controller,
     this.selectable = true,
-  }) : _controller = controller {
-    if (_controller == null) _controller = TextEditingController();
+  }) : _controller = controller ?? TextEditingController() {
     _field = MrkdownEditingField(
       controller: _controller,
       key: UniqueKey(),
@@ -57,10 +56,10 @@ class MarkDownEditor {
   }
 
   TextEditingController _controller;
-  Widget _field;
-  Widget _icons;
-  Widget _preview;
-  Function _setStateFuntion;
+  late Widget _field;
+  late Widget _icons;
+  late Widget _preview;
+  late Function _setStateFuntion;
 
   /// Whether preview should be selectable or not
   final bool selectable;

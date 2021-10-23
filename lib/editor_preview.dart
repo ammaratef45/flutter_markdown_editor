@@ -12,8 +12,8 @@ import 'package:url_launcher/url_launcher.dart';
 class MarkdownPreview extends StatelessWidget {
   /// Create the [MarkdownPreview] passing the text and [selectable].
   const MarkdownPreview({
-    Key key,
-    @required this.text,
+    Key? key,
+    required this.text,
     this.selectable = true,
   }) : super(key: key);
 
@@ -30,22 +30,20 @@ class MarkdownPreview extends StatelessWidget {
         child: Markdown(
           controller: ScrollController(),
           selectable: selectable,
-          onTapLink: (_, href, __) {
-            canLaunch(href).then((value) {
-              if (value) {
-                launch(href);
-              } else {
-                Fluttertoast.showToast(
-                  msg: "Couldn't open the URL",
-                  toastLength: Toast.LENGTH_SHORT,
-                  gravity: ToastGravity.CENTER,
-                  timeInSecForIosWeb: 1,
-                  backgroundColor: Colors.red,
-                  textColor: Colors.white,
-                  fontSize: 16.0,
-                );
-              }
-            });
+          onTapLink: (_, href, __) async {
+            if (href == null || !await canLaunch(href)) {
+              Fluttertoast.showToast(
+                msg: "Couldn't open the URL",
+                toastLength: Toast.LENGTH_SHORT,
+                gravity: ToastGravity.CENTER,
+                timeInSecForIosWeb: 1,
+                backgroundColor: Colors.red,
+                textColor: Colors.white,
+                fontSize: 16.0,
+              );
+            } else {
+              launch(href);
+            }
           },
           data: text,
           shrinkWrap: true,

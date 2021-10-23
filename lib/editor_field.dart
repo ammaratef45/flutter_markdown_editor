@@ -13,18 +13,17 @@ class MrkdownEditingField extends StatelessWidget {
   /// Create a [MrkdownEditingField] passing [key], [controller], [onChange]
   /// and [maxLines].
   const MrkdownEditingField({
-    Key key,
-    @required this.controller,
+    Key? key,
+    required this.controller,
     this.onChange,
     this.maxLines = 8,
-  })  : assert(controller != null),
-        super(key: key);
+  }) : super(key: key);
 
   /// Controls the text being edited and can't be null.
   final TextEditingController controller;
 
   /// Will be called when the text change.
-  final Function onChange;
+  final Function? onChange;
 
   /// Will be passed as [maxLines] parameter to the [TextFormField].
   final int maxLines;
@@ -36,7 +35,7 @@ class MrkdownEditingField extends StatelessWidget {
       maxLines: maxLines,
       controller: controller,
       onChanged: (string) {
-        if (onChange != null) onChange();
+        if (onChange != null) onChange!.call();
       },
     );
   }
