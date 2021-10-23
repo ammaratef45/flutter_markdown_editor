@@ -23,6 +23,7 @@ typedef UrlSource = Future<String> Function({
 /// for a url or image source, You can use it to show your
 /// own dialog and return the prompt value, Check the
 /// function _takeInput for an example.
+// ignore: must_be_immutable
 class MarkdownEditorIcons extends StatelessWidget {
   /// Create a [MarkdownEditorIcons] passing a [controller],
   /// [urlSource] and [afterEditing].
@@ -31,9 +32,17 @@ class MarkdownEditorIcons extends StatelessWidget {
     required this.controller,
     this.afterEditing,
     this.urlSource,
-  }) : super(key: key);
+  }) : super(key: key) {
+    controller.selection = _lastValidSelection;
+    controller.addListener(() {
+      if (controller.selection.isValid) {
+        _lastValidSelection = controller.selection;
+      }
+    });
+  }
 
   final _scrollbarController = ScrollController();
+  TextSelection _lastValidSelection = TextSelection.collapsed(offset: 0);
 
   /// This widget will manipulate the text inside this [controller].
   final TextEditingController controller;
@@ -145,7 +154,7 @@ class MarkdownEditorIcons extends StatelessWidget {
     String? afterPrompt,
   }) async {
     final currentTextValue = controller.value.text;
-    final selection = controller.selection;
+    final selection = _lastValidSelection;
     final middle = selection.textInside(currentTextValue);
     final textBefore = selection.textBefore(currentTextValue);
     final textAfter = selection.textAfter(currentTextValue);
