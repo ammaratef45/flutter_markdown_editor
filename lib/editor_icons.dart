@@ -63,7 +63,7 @@ class MarkdownEditorIcons extends StatelessWidget {
       height: 64,
       child: Scrollbar(
         controller: _scrollbarController,
-        isAlwaysShown: true,
+        thumbVisibility: true,
         child: ListView(
           controller: _scrollbarController,
           scrollDirection: Axis.horizontal,

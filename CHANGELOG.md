@@ -1,3 +1,7 @@
+## [2.0.0] - 23/10/2020.
+
+* Upgrade SDK.
+
 ## [1.1.1] - 23/10/2020.
 
 * Preview text is selectable.
