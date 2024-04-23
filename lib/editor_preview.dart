@@ -31,7 +31,7 @@ class MarkdownPreview extends StatelessWidget {
           controller: ScrollController(),
           selectable: selectable,
           onTapLink: (_, href, __) async {
-            if (href == null || !await canLaunch(href)) {
+            if (href == null || !await canLaunchUrl(Uri(path: href))) {
               Fluttertoast.showToast(
                 msg: "Couldn't open the URL",
                 toastLength: Toast.LENGTH_SHORT,
@@ -42,7 +42,7 @@ class MarkdownPreview extends StatelessWidget {
                 fontSize: 16.0,
               );
             } else {
-              launch(href);
+              launchUrl(Uri(path: href));
             }
           },
           data: text,
